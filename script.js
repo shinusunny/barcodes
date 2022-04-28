@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 
 const barcode = {
   types: {
-    8: "GTIN-8",
-    12: "GTIN-12",
-    13: "GTIN-13",
-    14: "GTIN-14",
-    17: "GSIN",
-    18: "SSSC",
+    8: 'GTIN-8',
+    12: 'GTIN-12',
+    13: 'GTIN-13',
+    14: 'GTIN-14',
+    17: 'GSIN',
+    18: 'SSSC',
   },
 
   validate(ean) {
@@ -15,7 +15,7 @@ const barcode = {
     if (isNaN(ean) || !this.types[ean.length + 1]) {
       const errMsg = Object.entries(this.types)
         .map(([k, v]) => `${k - 1} (${v})`)
-        .join(", ");
+        .join(', ');
       alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
       valid = false;
     }
@@ -26,7 +26,7 @@ const barcode = {
     const digits = [...ean].reverse();
     const { even, odd } = digits.reduce(
       (sum, cur, i) => {
-        sum[i % 2 == 0 ? "even" : "odd"] += +cur;
+        sum[i % 2 == 0 ? 'even' : 'odd'] += +cur;
         return sum;
       },
       { even: 0, odd: 0 }
@@ -35,17 +35,18 @@ const barcode = {
   },
 };
 
-const cdInp = document.querySelector("#cd-inp");
-const cdBtn = document.querySelector("#cd-btn");
-const cdRes = document.querySelector("#cd-res");
+const cdInp = document.querySelector('#cd-inp');
+const cdBtn = document.querySelector('#cd-btn');
+const cdRes = document.querySelector('#cd-res');
 
-cdBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  cdRes.textContent = "";
+cdBtn.addEventListener('click', function (e) {
+  cdRes.textContent = '';
+
   const ean = cdInp.value;
-
   if (barcode.validate(ean))
     cdRes.textContent = `${barcode.checkDigit(ean)} (${
       barcode.types[ean.length + 1]
     })`;
+
+  e.preventDefault();
 });
