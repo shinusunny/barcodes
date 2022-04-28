@@ -15,8 +15,8 @@ const barcode = {
     if (isNaN(ean) || !this.types[ean.length + 1]) {
       const errMsg = Object.entries(this.types)
         .map(([k, v]) => `${k - 1} (${v})`)
-        .join("\n");
-      alert(`Entered length: ${ean.length}\nValid lengths:\n${errMsg}`);
+        .join(", ");
+      alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
       valid = false;
     }
     return valid;
