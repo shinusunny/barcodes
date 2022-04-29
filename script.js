@@ -38,15 +38,28 @@ const barcode = {
 const cdInp = document.querySelector('#cd-inp');
 const cdBtn = document.querySelector('#cd-btn');
 const cdRes = document.querySelector('#cd-res');
+const cdGtin = document.querySelector('#cd-gtin');
+const cdCpy = document.querySelector('#cd-cpy');
+
+cdCpy.style.visibility = 'hidden';
 
 cdBtn.addEventListener('click', function (e) {
   cdRes.textContent = '';
+  cdCpy.style.visibility = 'hidden';
 
   const ean = cdInp.value;
-  if (barcode.validate(ean))
-    cdRes.textContent = `${barcode.checkDigit(ean)} (${
-      barcode.types[ean.length + 1]
-    })`;
+  if (barcode.validate(ean)) {
+    const cd = barcode.checkDigit(ean);
+    cdRes.textContent = `${cd} (${barcode.types[ean.length + 1]})`;
+    cdGtin.textContent = `${ean} ${cd}`;
+    cdCpy.style.visibility = 'visible';
+  }
+
+  e.preventDefault();
+});
+
+cdCpy.addEventListener('click', function (e) {
+  navigator.clipboard.writeText(cdGtin.textContent.trim().replace(/\s/g, ''));
 
   e.preventDefault();
 });
