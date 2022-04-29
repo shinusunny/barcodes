@@ -12,7 +12,7 @@ const barcode = {
 
   validate(ean) {
     let valid = true;
-    if (isNaN(ean) || !this.types[ean.length + 1]) {
+    if (isNaN(ean) || ean <= 0 || !this.types[ean.length + 1]) {
       const errMsg = Object.entries(this.types)
         .map(([k, v]) => `${k - 1} (${v})`)
         .join(', ');
@@ -46,6 +46,7 @@ cdCpy.style.visibility = 'hidden';
 cdBtn.addEventListener('click', function (e) {
   cdRes.textContent = '';
   cdCpy.style.visibility = 'hidden';
+  cdGtin.style.visibility = 'hidden';
 
   const ean = cdInp.value;
   if (barcode.validate(ean)) {
@@ -53,9 +54,17 @@ cdBtn.addEventListener('click', function (e) {
     cdRes.textContent = `${cd} (${barcode.types[ean.length + 1]})`;
     cdGtin.textContent = `${ean} ${cd}`;
     cdCpy.style.visibility = 'visible';
+    cdGtin.style.visibility = 'visible';
   }
 
   e.preventDefault();
+});
+
+cdInp.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    cdBtn.click();
+    e.preventDefault();
+  }
 });
 
 cdCpy.addEventListener('click', function (e) {

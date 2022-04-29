@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
     <title>Barcode Helper</title>
   </head>
   <body>
@@ -10,12 +17,7 @@
     <form id="cd">
       <div>
         <span>Barcode</span>
-        <input
-          type="number"
-          min="1000000"
-          max="99999999999999999"
-          id="cd-inp"
-        />
+        <input type="text" maxlength="17" size="22" id="cd-inp" pattern="\d*" />
         <input type="button" id="cd-btn" value="Calculate" />
         <span id="cd-res"></span>
       </div>
