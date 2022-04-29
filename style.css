@@ -13,13 +13,13 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0 0.5rem;
-  padding: 0;
-  box-sizing: inherit;
 }
 
 html {
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -36,19 +36,25 @@ input[type='button'] {
   font-size: 1rem;
   font-weight: 400;
   border: none;
-  padding: 0.3rem 1rem;
+  padding: 0 1rem;
   border-radius: 0.2rem;
   cursor: pointer;
   transition: all 0.3s;
-  box-sizing: inherit;
+  height: 2rem;
 }
 
 input[type='text'] {
   font-family: inherit;
   font-size: 1rem;
   font-weight: inherit;
-  padding: 0.3rem;
+  padding: 0 0.5rem;
   border: 1px solid #ddd;
   border-radius: 0.2rem;
-  box-sizing: inherit;
+  height: 2rem;
+}
+
+.cd-cd {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-primary);
 }

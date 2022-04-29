@@ -35,26 +35,26 @@ const barcode = {
   },
 };
 
-const cdInp = document.querySelector('#cd-inp');
-const cdBtn = document.querySelector('#cd-btn');
-const cdRes = document.querySelector('#cd-res');
-const cdGtin = document.querySelector('#cd-gtin');
-const cdCpy = document.querySelector('#cd-cpy');
+const cdInp = document.querySelector('.cd-inp');
+const cdBtn = document.getElementById('cd-btn');
+const cdRes = document.querySelector('.cd-res');
+const cdEan = document.querySelector('.cd-ean');
+const cdCdg = document.querySelector('.cd-cd');
+const cdTyp = document.querySelector('.cd-typ');
+const cdCpy = document.getElementById('cd-cpy');
 
-cdCpy.style.visibility = 'hidden';
+cdRes.style.visibility = 'hidden';
 
 cdBtn.addEventListener('click', function (e) {
-  cdRes.textContent = '';
-  cdCpy.style.visibility = 'hidden';
-  cdGtin.style.visibility = 'hidden';
+  cdRes.style.visibility = 'hidden';
 
   const ean = cdInp.value;
   if (barcode.validate(ean)) {
     const cd = barcode.checkDigit(ean);
-    cdRes.textContent = `${cd} (${barcode.types[ean.length + 1]})`;
-    cdGtin.textContent = `${ean} ${cd}`;
-    cdCpy.style.visibility = 'visible';
-    cdGtin.style.visibility = 'visible';
+    cdEan.textContent = '';
+    cdEan.insertAdjacentHTML('beforeend', `${ean}<span class="cd-cd">${cd}</span>`);
+    cdTyp.textContent = `(${barcode.types[ean.length + 1]})`;
+    cdRes.style.visibility = 'visible';
   }
 
   e.preventDefault();
@@ -68,7 +68,6 @@ cdInp.addEventListener('keydown', function (e) {
 });
 
 cdCpy.addEventListener('click', function (e) {
-  navigator.clipboard.writeText(cdGtin.textContent.trim().replace(/\s/g, ''));
-
+  navigator.clipboard.writeText(cdEan.textContent.concat(cdCdg.textContent));
   e.preventDefault();
 });
