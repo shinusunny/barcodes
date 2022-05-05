@@ -14,11 +14,10 @@
 
 * {
   box-sizing: border-box;
-  margin: 0 0.5rem;
 }
 
 html {
-  margin: 0;
+  margin: 0.5rem;
   padding: 0;
 }
 
@@ -26,7 +25,6 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   color: #444;
-  line-height: 3;
 }
 
 input[type='button'] {
@@ -56,5 +54,26 @@ input[type='text'] {
 .cd-cd {
   font-size: 1.2rem;
   font-weight: 400;
+  margin-left: 0.2rem;
   color: var(--color-primary);
+}
+
+.cd-get,
+.cd-res {
+  display: flex;
+  flex-direction: column;
+}
+
+.cd-get > *,
+.cd-res > * {
+  margin: 0.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .cd-get,
+  .cd-res {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
