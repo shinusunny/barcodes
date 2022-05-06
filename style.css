@@ -88,7 +88,3 @@ input[type='text'] {
     flex-direction: row;
   }
 }
-
-.section-2 {
-  visibility: hidden;
-}

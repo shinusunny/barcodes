@@ -45,10 +45,24 @@ const cdCdg = document.querySelector('.cd-cd');
 const cdTyp = document.querySelector('.cd-typ');
 const cdCpy = document.getElementById('cd-cpy');
 
+const showSection = function (sect) {
+  document.querySelectorAll('section').forEach(function (elem, i) {
+    if (i > 0) {
+      elem.style.display = 'none';
+    }
+  });
+
+  if (sect) sect.style.display = 'block';
+};
+
+showSection();
+
 cdMenu.addEventListener('click', function (e) {
   const clicked = e.target.closest('.btn-select');
   if (!clicked) return;
-  document.querySelector(`.section-${clicked.dataset.button}`).scrollIntoView({ behavior: 'smooth' });
+  const toSection = document.querySelector(`.section-${clicked.dataset.button}`);
+  showSection(toSection);
+  toSection.scrollIntoView({ behavior: 'smooth' });
   e.preventDefault();
 });
 
