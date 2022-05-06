@@ -1,5 +1,6 @@
 'use strict';
 
+// main barcode object
 const barcode = {
   types: {
     8: 'GTIN-8',
@@ -23,7 +24,9 @@ const barcode = {
       const errMsg = Object.entries(this.types)
         .map(([k, v]) => `${k - 1} (${v})`)
         .join(', ');
-      alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
+      setTimeout(function () {
+        alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
+      }, 2000);
       valid = false;
     }
     return valid;
@@ -38,7 +41,9 @@ const barcode = {
         })
         .map(([k, v]) => `${k} (${v})`)
         .join(', ');
-      alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
+      alert(
+        `Entered length: ${ean.length}\nValid lengths: ${errMsg}\nOther Validations: starts with 2 followed by 1, 2, 3, 4, 7, 8 or 9`
+      );
       valid = false;
     }
     return valid;
@@ -83,6 +88,15 @@ const barcode = {
 // select elements for selection page
 const cdMenu = document.querySelector('.section-0');
 
+// display section
+const showSection = function (sect) {
+  document.querySelectorAll('section').forEach((elem, i) => {
+    if (i > 0) elem.style.display = 'none';
+  });
+
+  if (sect) sect.style.display = 'block';
+};
+
 // select elements for check digit page
 const cdBtn = document.getElementById('cd-btn');
 const cdInp = document.querySelector('.cd-inp');
@@ -97,17 +111,17 @@ const pdBtn = document.getElementById('pd-btn');
 const pdInp = document.querySelector('.pd-inp');
 const pdRes = document.querySelector('.pd-res');
 const pdEan = document.querySelector('.pd-ean');
+const pdTyp = document.querySelector('.pd-typ');
 const pdCpy = document.getElementById('pd-cpy');
 
-const showSection = function (sect) {
-  document.querySelectorAll('section').forEach((elem, i) => {
-    if (i > 0) elem.style.display = 'none';
-  });
-
-  if (sect) sect.style.display = 'block';
+// initialize
+const init = function () {
+  showSection();
+  cdRes.style.visibility = 'hidden';
+  pdRes.style.visibility = 'hidden';
 };
 
-showSection();
+init();
 
 cdMenu.addEventListener('click', function (e) {
   const clicked = e.target.closest('.btn-select');
@@ -118,8 +132,7 @@ cdMenu.addEventListener('click', function (e) {
   e.preventDefault();
 });
 
-cdRes.style.visibility = 'hidden';
-
+// functions for check digit section
 cdBtn.addEventListener('click', function (e) {
   cdRes.style.visibility = 'hidden';
 
@@ -146,6 +159,7 @@ cdCpy.addEventListener('click', function (e) {
   e.preventDefault();
 });
 
+// functions for price check digit section
 pdBtn.addEventListener('click', function (e) {
   pdRes.style.visibility = 'hidden';
 
@@ -153,10 +167,12 @@ pdBtn.addEventListener('click', function (e) {
   let pde = '';
   if (barcode.pdValidate(pdi)) {
     let ean = `${pdi.slice(0, pdi.length - 1)}`.padStart(12, '0');
-    let pdp = [3, 4].includes(+ean[1]) ? 7 : 6;
-    let pd = [3, 4].includes(+ean[1]) ? barcode.pcdFourDigitPrice(ean) : barcode.pcdFiveDigitPrice(ean);
+    const prc4 = [3, 4].includes(+ean[1]);
+    let pdp = prc4 ? 7 : 6;
+    let pd = prc4 ? barcode.pcdFourDigitPrice(ean) : barcode.pcdFiveDigitPrice(ean);
     pde = `${ean.slice(0, pdp)}${pd}${ean.slice(pdp + 1)}`;
     pdEan.textContent = pde.concat(barcode.checkDigit(pde));
+    pdTyp.textContent = `${prc4 ? '(4-digit Price Field)' : '(5-digit Price Field)'}`;
     pdRes.style.visibility = 'visible';
   }
   e.preventDefault();

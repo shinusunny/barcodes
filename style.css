@@ -36,6 +36,10 @@ body {
   padding: 0.5rem 1rem;
 }
 
+span {
+  padding: 0.2rem 0rem;
+}
+
 input[type='button'] {
   font-size: 1rem;
   font-weight: 400;
@@ -45,7 +49,7 @@ input[type='button'] {
   cursor: pointer;
 }
 
-input[type='text'] {
+input[type='number'] {
   font-size: 1rem;
   font-weight: inherit;
   padding: 0 0.5rem;
@@ -54,8 +58,7 @@ input[type='text'] {
   height: 2rem;
 }
 
-#cd input[type='button'],
-#pd input[type='button'] {
+form input[type='button'] {
   padding: 0 1rem;
   transition: all 0.3s;
   height: 2rem;
@@ -68,18 +71,12 @@ input[type='text'] {
   color: var(--color-primary);
 }
 
-.cd-get,
-.cd-res,
-.pd-get,
-.pd-res {
+form > * {
   display: flex;
   flex-direction: column;
 }
 
-.cd-get > *,
-.cd-res > *,
-.pd-get > *,
-.pd-res > * {
+form > * > * {
   margin: 0.5rem;
 }
 
@@ -88,10 +85,8 @@ input[type='text'] {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .cd-get,
-  .cd-res,
-  .pd-get,
-  .pd-res {
+  form > * {
     flex-direction: row;
+    align-self: cen;
   }
 }

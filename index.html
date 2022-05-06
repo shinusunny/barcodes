@@ -25,7 +25,7 @@
       <form id="cd" autocomplete="off">
         <div class="cd-get">
           <span>Barcode without check digit</span>
-          <input type="text" maxlength="17" size="22" name="cd-inp" class="cd-inp" pattern="\d*" />
+          <input type="number" maxlength="17" size="22" name="cd-inp" class="cd-inp" pattern="\d*" />
           <input type="button" id="cd-btn" value="Calculate" />
         </div>
         <div class="cd-res">
@@ -41,11 +41,12 @@
       <form id="pd" autocomplete="off">
         <div class="pd-get">
           <span>Barcode with price</span>
-          <input type="text" maxlength="17" size="22" name="pd-inp" class="pd-inp" pattern="\d*" />
+          <input type="number" maxlength="17" size="22" name="pd-inp" class="pd-inp" pattern="\d*" />
           <input type="button" id="pd-btn" value="Calculate" />
         </div>
         <div class="pd-res">
           <span class="pd-ean"></span>
+          <span class="pd-typ"></span>
           <input type="button" id="pd-cpy" value="Copy this key" />
         </div>
       </form>
