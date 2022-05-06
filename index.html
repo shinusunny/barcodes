@@ -16,19 +16,30 @@
     <title>Barcode Helper</title>
   </head>
   <body>
-    <h3>Calculate check digit</h3>
-    <form id="cd">
-      <div class="cd-get">
-        <span>Barcode without check digit</span>
-        <input type="text" maxlength="17" size="22" class="cd-inp" pattern="\d*" />
-        <input type="button" id="cd-btn" value="Calculate" />
-      </div>
-      <div class="cd-res">
-        <span class="cd-ean"><span class="cd-cd"></span></span>
-        <span class="cd-typ"></span>
-        <input type="button" id="cd-cpy" value="Copy this key" />
-      </div>
-    </form>
+    <section class="section-0">
+      <input type="button" class="btn-select" data-button="1" value="Calculate check digit" />
+      <input type="button" class="btn-select" data-button="2" value="Calculate price check digit" />
+    </section>
+    <section class="section-1">
+      <h3>Calculate check digit</h3>
+      <form id="cd" autocomplete="off">
+        <div class="cd-get">
+          <span>Barcode without check digit</span>
+          <input type="text" maxlength="17" size="22" name="cd-inp" class="cd-inp" pattern="\d*" />
+          <input type="button" id="cd-btn" value="Calculate" />
+        </div>
+        <div class="cd-res">
+          <span class="cd-ean"><span class="cd-cd"></span></span>
+          <span class="cd-typ"></span>
+          <input type="button" id="cd-cpy" value="Copy this key" />
+        </div>
+      </form>
+    </section>
+
+    <section class="section-2">
+      <h3>Calculate price check digit</h3>
+      <form id="cd" autocomplete="off"></form>
+    </section>
 
     <script src="script.js"></script>
   </body>

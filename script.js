@@ -35,6 +35,8 @@ const barcode = {
   },
 };
 
+const cdMenu = document.querySelector('.section-0');
+
 const cdInp = document.querySelector('.cd-inp');
 const cdBtn = document.getElementById('cd-btn');
 const cdRes = document.querySelector('.cd-res');
@@ -42,6 +44,13 @@ const cdEan = document.querySelector('.cd-ean');
 const cdCdg = document.querySelector('.cd-cd');
 const cdTyp = document.querySelector('.cd-typ');
 const cdCpy = document.getElementById('cd-cpy');
+
+cdMenu.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.btn-select');
+  if (!clicked) return;
+  document.querySelector(`.section-${clicked.dataset.button}`).scrollIntoView({ behavior: 'smooth' });
+  e.preventDefault();
+});
 
 cdRes.style.visibility = 'hidden';
 
@@ -56,7 +65,6 @@ cdBtn.addEventListener('click', function (e) {
     cdTyp.textContent = `(${barcode.types[ean.length + 1]})`;
     cdRes.style.visibility = 'visible';
   }
-
   e.preventDefault();
 });
 
