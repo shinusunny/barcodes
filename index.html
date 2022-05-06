@@ -38,7 +38,17 @@
 
     <section class="section-2">
       <h3>Calculate price check digit</h3>
-      <form id="cd" autocomplete="off"></form>
+      <form id="pd" autocomplete="off">
+        <div class="pd-get">
+          <span>Barcode with price</span>
+          <input type="text" maxlength="17" size="22" name="pd-inp" class="pd-inp" pattern="\d*" />
+          <input type="button" id="pd-btn" value="Calculate" />
+        </div>
+        <div class="pd-res">
+          <span class="pd-ean"></span>
+          <input type="button" id="pd-cpy" value="Copy this key" />
+        </div>
+      </form>
     </section>
 
     <script src="script.js"></script>

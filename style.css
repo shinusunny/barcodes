@@ -54,7 +54,8 @@ input[type='text'] {
   height: 2rem;
 }
 
-#cd input[type='button'] {
+#cd input[type='button'],
+#pd input[type='button'] {
   padding: 0 1rem;
   transition: all 0.3s;
   height: 2rem;
@@ -68,13 +69,17 @@ input[type='text'] {
 }
 
 .cd-get,
-.cd-res {
+.cd-res,
+.pd-get,
+.pd-res {
   display: flex;
   flex-direction: column;
 }
 
 .cd-get > *,
-.cd-res > * {
+.cd-res > *,
+.pd-get > *,
+.pd-res > * {
   margin: 0.5rem;
 }
 
@@ -84,7 +89,9 @@ input[type='text'] {
   }
 
   .cd-get,
-  .cd-res {
+  .cd-res,
+  .pd-get,
+  .pd-res {
     flex-direction: row;
   }
 }
