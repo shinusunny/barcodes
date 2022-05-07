@@ -24,9 +24,7 @@ const barcode = {
       const errMsg = Object.entries(this.types)
         .map(([k, v]) => `${k - 1} (${v})`)
         .join(', ');
-      setTimeout(function () {
-        alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
-      }, 2000);
+      alert(`Entered length: ${ean.length}\nValid lengths: ${errMsg}`);
       valid = false;
     }
     return valid;
