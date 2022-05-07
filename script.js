@@ -199,14 +199,14 @@ const barcode = {
         console.log('gs1item', gs1Item);
         if (gs1Item.FNC1) {
           valid = false;
-          re = new RegExp(String.raw`^(\d{0,${len}})([˜_]?)(.*)?`);
+          re = new RegExp(String.raw`^(\d{0,${len}})([~_]?)(.*)?`);
           console.log(re);
           found = eanRem.match(re);
           console.log('found fnc1', found);
           if (found) {
             valid = true;
             i += found[1].length + found[2]?.length;
-            re = /[^\d˜_]/;
+            re = /[^\d~_]/;
             if (found[3]) console.log('found fnc1 #3', found[3].match(re));
             if (found[3] && (!found[2] || found[3].match(re))) {
               valid = false;
