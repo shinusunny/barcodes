@@ -19,6 +19,7 @@
     <section class="section-0">
       <input type="button" class="btn-select" data-button="1" value="Calculate check digit" />
       <input type="button" class="btn-select" data-button="2" value="Calculate price check digit" />
+      <input type="button" class="btn-select" data-button="3" value="Validate GS1 barcode" />
     </section>
     <section class="section-1">
       <h3>Calculate check digit</h3>
@@ -52,6 +53,21 @@
       </form>
     </section>
 
+    <section class="section-3">
+      <h3>Validate GS1 barcode</h3>
+      <form id="gs1" autocomplete="off">
+        <div class="gs1-get">
+          <span>GS1 Barcode</span>
+          <input type="text" maxlength="50" size="50" name="gs1-inp" class="gs1-inp" pattern="[\d˜_]*" />
+          <input type="button" id="gs1-btn" value="Validate" />
+        </div>
+        <div class="gs1-res">
+          <span class="gs1-dtls"></span>
+        </div>
+      </form>
+    </section>
+
+    <section><video id="stream" style="width: 100vw; height:100vh;"/ ></section>
     <script src="script.js"></script>
   </body>
 </html>

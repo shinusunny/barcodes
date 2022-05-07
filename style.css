@@ -49,7 +49,14 @@ input[type='button'] {
   cursor: pointer;
 }
 
-input[type='number'] {
+form input[type='button'] {
+  padding: 0 1rem;
+  transition: all 0.3s;
+  height: 2rem;
+}
+
+input[type='number'],
+input[type='text'] {
   font-size: 1rem;
   font-weight: inherit;
   padding: 0 0.5rem;
@@ -58,17 +65,15 @@ input[type='number'] {
   height: 2rem;
 }
 
-form input[type='button'] {
-  padding: 0 1rem;
-  transition: all 0.3s;
-  height: 2rem;
-}
-
 .cd-cd {
   font-size: 1.2rem;
   font-weight: 400;
   margin-left: 0.2rem;
   color: var(--color-primary);
+}
+
+.gs1-dtls {
+  white-space: pre;
 }
 
 form > * {
