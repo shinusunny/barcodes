@@ -272,9 +272,13 @@ const barcode = {
 const cdMenu = document.querySelector('.section-0');
 
 // display section
-const showSection = function (sect) {
+const showSection = function (sect, button) {
   document.querySelectorAll('section').forEach((elem, i) => {
     if (i > 0) elem.style.display = 'none';
+  });
+
+  cdMenu.querySelectorAll('.btn-select').forEach(elem => {
+    elem.style.opacity = elem !== button && sect ? 0.5 : 1;
   });
 
   if (sect) sect.style.display = 'block';
@@ -316,7 +320,7 @@ cdMenu.addEventListener('click', function (e) {
   const clicked = e.target.closest('.btn-select');
   if (!clicked) return;
   const toSection = document.querySelector(`.section-${clicked.dataset.button}`);
-  showSection(toSection);
+  showSection(toSection, clicked);
   toSection.scrollIntoView({ behavior: 'smooth' });
   e.preventDefault();
 });
