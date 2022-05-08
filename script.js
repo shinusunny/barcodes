@@ -167,9 +167,7 @@ const barcode = {
     let valid = true;
     if (isNaN(ean) || ean <= 0 || ean.length !== 13 || +ean[0] !== 2 || ![1, 2, 3, 4, 7, 8, 9].includes(+ean[1])) {
       const errMsg = Object.entries(this.types)
-        .filter(([k, _]) => {
-          return [13].includes(+k);
-        })
+        .filter(([k, _]) => [13].includes(+k))
         .map(([k, v]) => `${k} (${v})`)
         .join(', ');
       alert(
