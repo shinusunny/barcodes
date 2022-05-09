@@ -93,6 +93,7 @@ footer {
   transform: translateX(-50%);
   font-size: 0.7rem;
   opacity: 0.5;
+  z-index: 99;
 }
 footer > * {
   display: inline;
@@ -101,7 +102,7 @@ footer > * {
 
 @media only screen and (min-width: 600px) {
   .section-0 {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   form > * {
