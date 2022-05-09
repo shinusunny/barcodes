@@ -85,6 +85,20 @@ form > * > * {
   margin: 0.5rem;
 }
 
+footer {
+  position: fixed;
+  display: inline;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+footer > * {
+  display: inline;
+  margin-bottom: 0;
+}
+
 @media only screen and (min-width: 600px) {
   .section-0 {
     grid-template-columns: 1fr 1fr 1fr;
@@ -92,6 +106,6 @@ form > * > * {
 
   form > * {
     flex-direction: row;
-    align-self: cen;
+    align-self: center;
   }
 }
