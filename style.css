@@ -1,15 +1,5 @@
 :root {
   --color-primary: #5ec576;
-  --color-secondary: #ffcb03;
-  --color-tertiary: #ff585f;
-  --color-primary-darker: #4bbb7d;
-  --color-secondary-darker: #ffbb00;
-  --color-tertiary-darker: #fd424b;
-  --color-primary-opacity: #5ec5763a;
-  --color-secondary-opacity: #ffcd0331;
-  --color-tertiary-opacity: #ff58602d;
-  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
-  --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
 }
 
 * {
@@ -26,18 +16,14 @@ body {
   color: #444;
 }
 
+span {
+  padding: 0.2rem 0rem;
+}
+
 .section-0 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-}
-
-.section-0 > * {
-  padding: 0.5rem 1rem;
-}
-
-span {
-  padding: 0.2rem 0rem;
 }
 
 input[type='button'] {
@@ -46,6 +32,7 @@ input[type='button'] {
   background-color: var(--color-primary);
   border: none;
   border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
@@ -76,13 +63,17 @@ input[type='text'] {
   white-space: pre;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 form > * {
   display: flex;
   flex-direction: column;
-}
-
-form > * > * {
-  margin: 0.5rem;
+  gap: 1rem;
+  width: 100%;
 }
 
 footer {
@@ -95,9 +86,10 @@ footer {
   opacity: 0.5;
   z-index: 99;
 }
+
 footer > * {
   display: inline;
-  margin-bottom: 0;
+  margin-bottom: 0.1rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -107,6 +99,5 @@ footer > * {
 
   form > * {
     flex-direction: row;
-    align-self: center;
   }
 }
