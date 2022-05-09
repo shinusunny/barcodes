@@ -22,7 +22,7 @@ span {
 
 .section-0 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   gap: 1rem;
 }
 
@@ -93,10 +93,6 @@ footer > * {
 }
 
 @media only screen and (min-width: 600px) {
-  .section-0 {
-    grid-template-columns: 1fr 1fr;
-  }
-
   form > * {
     flex-direction: row;
   }
