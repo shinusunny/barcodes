@@ -1,5 +1,5 @@
 const cacheName = 'site-cache-v1';
-const assetsToCache = ['/', './index.html', './style.css', './script.js'];
+const assetsToCache = ['./index.html', './style.css', './script.js'];
 
 self.addEventListener('install', event => {
   self.skipWaiting(); // skip waiting
