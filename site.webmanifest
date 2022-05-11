@@ -1,6 +1,7 @@
 {
   "name": "Barcode Helper",
   "short_name": "BH",
+  "start_url": ".",
   "icons": [
     {
       "src": "./android-chrome-192x192.png",
