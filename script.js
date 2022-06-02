@@ -1,5 +1,6 @@
 'use strict';
 
+// register service worker for pwa
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('./sw.js')
@@ -11,8 +12,8 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// main barcode object
-const barcode = {
+// main Barcode object
+const Barcode = {
   types: {
     8: 'GTIN-8',
     12: 'GTIN-12',
@@ -49,8 +50,8 @@ const barcode = {
       FNC1: 0,
       desc: 'Global Trade Item Number (GTIN)',
       fun(gtin) {
-        barcode.gs1Dtls.gtin14 = gtin;
-        barcode.gs1Dtls.ean13 = gtin.slice(1, 14);
+        Barcode.gs1Dtls.gtin14 = gtin;
+        Barcode.gs1Dtls.ean13 = gtin.slice(1, 14);
       },
     },
     15: {
@@ -58,8 +59,8 @@ const barcode = {
       FNC1: 0,
       desc: 'Best before date (YYMMDD)',
       fun(expiry) {
-        barcode.gs1Dtls.expiry = expiry;
-        barcode.gs1Dtls.expiryType = '15';
+        Barcode.gs1Dtls.expiry = expiry;
+        Barcode.gs1Dtls.expiryType = '15';
       },
     },
     16: {
@@ -67,8 +68,8 @@ const barcode = {
       FNC1: 0,
       desc: 'Sell by date (YYMMDD)',
       fun(expiry) {
-        barcode.gs1Dtls.expiry = expiry;
-        barcode.gs1Dtls.expiryType = '16';
+        Barcode.gs1Dtls.expiry = expiry;
+        Barcode.gs1Dtls.expiryType = '16';
       },
     },
     17: {
@@ -76,8 +77,8 @@ const barcode = {
       FNC1: 0,
       desc: 'Expiration date (YYMMDD)',
       fun(expiry) {
-        barcode.gs1Dtls.expiry = expiry;
-        barcode.gs1Dtls.expiryType = '17';
+        Barcode.gs1Dtls.expiry = expiry;
+        Barcode.gs1Dtls.expiryType = '17';
       },
     },
     3920: {
@@ -85,7 +86,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 0 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3921: {
@@ -93,7 +94,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 1 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3922: {
@@ -101,7 +102,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 2 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3923: {
@@ -109,7 +110,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 3 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3924: {
@@ -117,7 +118,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 4 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3925: {
@@ -125,7 +126,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 5 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3926: {
@@ -133,7 +134,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 6 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3927: {
@@ -141,7 +142,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 7 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3928: {
@@ -149,7 +150,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 8 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
     3929: {
@@ -157,7 +158,7 @@ const barcode = {
       FNC1: 1,
       desc: 'Price 9 decimal',
       fun(ai, price) {
-        barcode.gs1Dtls.priceMinor = barcode.price392(ai, price);
+        Barcode.gs1Dtls.priceMinor = Barcode.price392(ai, price);
       },
     },
   },
@@ -191,7 +192,7 @@ const barcode = {
 
   gs1Validate(ean) {
     this.gs1Reset();
-    this.gs1.barcode = ean;
+    this.gs1.Barcode = ean;
     const eanArr = [...ean];
     let eanRem = ean;
     let ai = '';
@@ -239,7 +240,7 @@ const barcode = {
         ai = '';
       }
     }
-    console.log(barcode);
+    console.log(Barcode);
     return valid;
   },
 
@@ -341,11 +342,11 @@ cdBtn.addEventListener('click', function (e) {
   cdRes.style.visibility = 'hidden';
 
   const ean = cdInp.value;
-  if (barcode.cdValidate(ean)) {
-    const cd = barcode.checkDigit(ean);
+  if (Barcode.cdValidate(ean)) {
+    const cd = Barcode.checkDigit(ean);
     cdEan.textContent = '';
     cdEan.insertAdjacentHTML('beforeend', `${ean}<span class="cd-cd">${cd}</span>`);
-    cdTyp.textContent = `(${barcode.types[ean.length + 1]})`;
+    cdTyp.textContent = `(${Barcode.types[ean.length + 1]})`;
     cdRes.style.visibility = 'visible';
   }
   e.preventDefault();
@@ -369,13 +370,13 @@ pdBtn.addEventListener('click', function (e) {
 
   let pdi = pdInp.value;
   let pde = '';
-  if (barcode.pcdValidate(pdi)) {
+  if (Barcode.pcdValidate(pdi)) {
     let ean = `${pdi.slice(0, pdi.length - 1)}`.padStart(12, '0');
     const prc4 = [3, 4].includes(+ean[1]);
     let pdp = prc4 ? 7 : 6;
-    let pd = prc4 ? barcode.pcdFourDigitPrice(ean) : barcode.pcdFiveDigitPrice(ean);
+    let pd = prc4 ? Barcode.pcdFourDigitPrice(ean) : Barcode.pcdFiveDigitPrice(ean);
     pde = `${ean.slice(0, pdp)}${pd}${ean.slice(pdp + 1)}`;
-    pdEan.textContent = pde.concat(barcode.checkDigit(pde));
+    pdEan.textContent = pde.concat(Barcode.checkDigit(pde));
     pdTyp.textContent = `${prc4 ? '(4-digit Price Field)' : '(5-digit Price Field)'}`;
     pdRes.style.visibility = 'visible';
   }
@@ -399,13 +400,13 @@ gs1Btn.addEventListener('click', function (e) {
   gs1Res.style.visibility = 'hidden';
 
   let ean = gs1Inp.value;
-  if (barcode.gs1Validate(ean)) {
-    gs1Dtls.textContent = Object.entries(barcode.gs1Dtls)
+  if (Barcode.gs1Validate(ean)) {
+    gs1Dtls.textContent = Object.entries(Barcode.gs1Dtls)
       .map(([k, v]) => `${k} ${v}`)
       .join('\n');
     gs1Res.style.visibility = 'visible';
   } else {
-    alert(`Entered length: ${ean.length}\nError: Invalid GS1 barcode`);
+    alert(`Entered length: ${ean.length}\nError: Invalid GS1 Barcode`);
   }
   e.preventDefault();
 });
